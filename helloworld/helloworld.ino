@@ -1,8 +1,10 @@
-int val;//定义变量val
-int ledpin=13;//定义数字接口13
+const int tx = 1;
+const int rx = 0;
 void setup()
 {
-    Serial.begin(9600);//设置波特率为9600。
+   //  Serial.begin(115200);//设置波特率为9600。
+     pinMode(rx,INPUT_PULLUP); 
+     pinMode(tx,INPUT_PULLUP); 
 }
 void loop()
 {
