@@ -9,17 +9,7 @@ const char* ssid     = "CatDog";          //WiFi名为 602
 const char* password = "aa135246A.";    //密码为 602602602
 
 char codes[4];
-char numbers[4];
-String code_1 = "01111";
-String code_2 = "00111";
-String code_3 = "00011";
-String code_4 = "00001";
-String code_5 = "00000";
-String code_6 = "10000";
-String code_7 = "11000";
-String code_8 = "11100";
-String code_9 = "11110";
-String code_0 = "11111";
+char numbers[10];
 
 void setup() {
   pinMode(LEDPIN, INPUT);
@@ -71,6 +61,8 @@ void process(int i) {
   } else if (i > 5 && i < 15) {
     Serial.println("短编码");
     code = '0';
+  }else{
+    return;
   }
 
   codes[code_index] = code;
@@ -85,10 +77,7 @@ void process(int i) {
 
 int num_index = 0;
 void decoding() {
-  if (num_index == 4) {
-    translation();
-    num_index = 0;
-  }
+
 
   Serial.println("解码");
   Serial.println(codes);
@@ -124,8 +113,14 @@ void decoding() {
     Serial.println("电码 0");
   } else {
     Serial.println("解码失败");
+     num_index=num_index-1;
   }
-  num_index++;
+  num_index=num_index+1;
+
+  if (num_index == 4) {
+    translation();
+    num_index = 0;
+  }
 }
 
 void translation() {
